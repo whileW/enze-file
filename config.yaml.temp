@@ -1,0 +1,27 @@
+ENV: debug
+HTTPADDR: 8080
+RPCADDR: 40010
+db:
+  mysql:
+    file:
+      username: root
+      password: xxxxx
+      path: 127.0.0.1:3306
+      db_name: file
+      config: charset=utf8&parseTime=True&loc=Local
+      max-idle-conns: 10
+      max-open-conns: 10
+      log_mode: true
+
+#文件允许后缀 分号分割
+file_allow_suffix: jpg;jpeg;png
+upload_type: qiniu
+qiniu:
+  img_root_path: http://127.0.0.1/
+  ak: xxxxxxxx
+  sk: xxxxxxx
+  bucket: xxxxxx
+  #区域 可选值：huadong、huabei、huanan、beimei、xinjiapo   默认huanan
+  zone: huanan
+  is_use_https: false
+  is_use_cdn_up: false
