@@ -6,16 +6,17 @@ import (
 	"github.com/google/uuid"
 	"github.com/qiniu/api.v7/storage"
 	"github.com/whileW/enze-file/model"
+	"github.com/whileW/enze-file/service"
 	"io"
 	"net/http"
 )
 
 type QnPuter struct {}
+const qn_name  = "qiniu"
 
-func (q *QnPuter)GetName() string {
-	return "qiniu"
+func init()  {
+	service.RegisterPutFileInter(qn_name,&QnPuter{})
 }
-
 //获取上传对象
 func get_uploader() (string,*storage.ResumeUploader) {
 	qns := GetSetting()

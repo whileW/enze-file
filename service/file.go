@@ -5,22 +5,18 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/whileW/enze-file/model"
-	"github.com/whileW/enze-file/service/qiniu"
 	"github.com/whileW/enze-global"
 	"github.com/whileW/enze-global/utils/resp"
 	"io"
-	"net/http"
 )
 
 type PutFile interface {
-	GetName()string
 	Put(at io.ReaderAt,name string,size int64) (string,string,error)
 	Get(c *gin.Context,file *model.File)
 } 
 var put_file_inter = map[string]PutFile{}
-func init()  {
-	qn := qiniu.QnPuter{}
-	put_file_inter[qn.GetName()] = &qn
+func RegisterPutFileInter(name string,inter PutFile)  {
+	put_file_inter[name] = inter
 }
 
 func Put(file io.ReaderAt,name string,size int64) (string,error) {
@@ -30,7 +26,7 @@ func Put(file io.ReaderAt,name string,size int64) (string,error) {
 	if err != nil {
 		return "",errors.New(fmt.Sprintf("上传失败：%v",err))
 	}
-	filem,err := AddFileS(name,new_name,path,size,put_file_m.GetName())
+	filem,err := AddFileS(name,new_name,path,size,upload_type)
 	if err != nil {
 		return "",errors.New(fmt.Sprintf("入库失败：%v",err))
 	}
@@ -44,8 +40,7 @@ func Get(c *gin.Context,code string)  {
 		return
 	}
 	if file == nil {
-		c.Status(http.StatusNotFound)
-		c.Abort()
+		resp.NoFindResult(c)
 		return
 	}
 	put_file_inter[file.SaveType].Get(c,file)

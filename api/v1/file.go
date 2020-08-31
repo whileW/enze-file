@@ -6,10 +6,10 @@ import (
 	"github.com/whileW/enze-global"
 	"github.com/whileW/enze-global/utils"
 	"github.com/whileW/enze-global/utils/resp"
-	"net/http"
 	"strings"
 )
 
+//上传
 func Upload(c *gin.Context)  {
 	mfile, err := c.FormFile("file")
 	if err != nil {
@@ -46,8 +46,7 @@ func Upload(c *gin.Context)  {
 func Get(c *gin.Context)  {
 	code := c.Param("code")
 	if code == "" {
-		c.Status(http.StatusNotFound)
-		c.Abort()
+		resp.NoFindResult(c)
 		return
 	}
 	service.Get(c,code)
