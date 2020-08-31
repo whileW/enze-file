@@ -11,6 +11,7 @@ import (
 )
 
 type PutFile interface {
+	//resp--- new_name   path    err
 	Put(at io.ReaderAt,name string,size int64) (string,string,error)
 	Get(c *gin.Context,file *model.File)
 } 
@@ -28,6 +29,10 @@ func Put(file io.ReaderAt,name string,size int64) (string,error) {
 	}
 	filem,err := AddFileS(name,new_name,path,size,upload_type)
 	if err != nil {
+		global.GVA_LOG.Errorw("上传文件入库失败",
+			"new_name",new_name,
+			"path",path,
+			"upload_type",upload_type)
 		return "",errors.New(fmt.Sprintf("入库失败：%v",err))
 	}
 	return filem.Code,nil

@@ -7,6 +7,8 @@ import (
 	"github.com/whileW/enze-global"
 	"github.com/whileW/enze-global/initialize"
 	"github.com/whileW/enze-global/utils/resp"
+	_"github.com/whileW/enze-file/service/qiniu"
+	_"github.com/whileW/enze-file/service/local"
 )
 
 func main(){

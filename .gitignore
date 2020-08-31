@@ -4,6 +4,7 @@
 *.exe
 *.log
 file
+upload/*
 
 .DS_Store
 
