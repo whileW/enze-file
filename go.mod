@@ -9,6 +9,6 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/qiniu/api.v7 v7.2.5+incompatible
 	github.com/qiniu/x v7.0.8+incompatible // indirect
-	github.com/whileW/enze-global v0.0.0-20200831025045-4a7f09c40ea5
+	github.com/whileW/enze-global v0.0.0-20200831092032-39a36198c77b
 	qiniupkg.com/x v7.0.8+incompatible // indirect
 )
