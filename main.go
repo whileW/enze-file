@@ -6,6 +6,7 @@ import (
 	"github.com/whileW/enze-file/router"
 	"github.com/whileW/enze-global"
 	"github.com/whileW/enze-global/initialize"
+	"github.com/whileW/enze-global/log"
 	"github.com/whileW/enze-global/utils/resp"
 	_"github.com/whileW/enze-file/service/qiniu"
 	_"github.com/whileW/enze-file/service/local"
@@ -27,6 +28,14 @@ func init_db_tables() {
 
 //加载http监听
 func init_server() {
+	//配置gin
+	gin.DefaultWriter = &log.GinLog{}
+	gin.DefaultErrorWriter = &log.GinErrLog{}
+	if global.GVA_CONFIG.SysSetting.Env != "debug" {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
+
 	r := gin.Default()
 	// 跨域
 	r.Use(resp.Cors())

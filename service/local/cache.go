@@ -10,7 +10,7 @@ func init()  {
 	get_dir_child_file("upload")
 }
 
-func get_dir_child_file(path string)  {
+func get_dir_child_file(path string) {
 	f,_ := ioutil.ReadDir(path)
 	for _,t := range f {
 		if t.IsDir() {
