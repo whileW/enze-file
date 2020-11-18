@@ -1,6 +1,8 @@
 ENV: debug
 HTTPADDR: 8080
 RPCADDR: 40010
+
+#数据库配置支持mysql、mssql
 db:
   mysql:
     file:
@@ -15,6 +17,7 @@ db:
 
 #文件允许后缀 分号分割
 file_allow_suffix: jpg;jpeg;png
+#上传方式 qiniu\local
 upload_type: qiniu
 qiniu:
   img_root_path: http://127.0.0.1/

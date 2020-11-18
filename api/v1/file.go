@@ -13,7 +13,7 @@ import (
 func Upload(c *gin.Context)  {
 	mfile, err := c.FormFile("file")
 	if err != nil {
-		global.GVA_LOG.Errorw("获取文件异常","err",err)
+		global.GVA_LOG.Errorw("获取文件异常","err",err,"content-type",c.GetHeader("Content-Type"))
 		resp.FailWithDetailed(c,resp.ParamterError,"没有获取到文件",nil)
 		return
 	}
