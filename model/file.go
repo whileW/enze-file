@@ -10,7 +10,7 @@ type File struct{
 	//UUID        		string    		`json:"uuid" gorm:"type:varchar(128)"`		//文件id
 	//Version				int				`json:"version" gorm:"type:int"`			//文件版本
 	Code 				string			`json:"code" gorm:"type:varchar(128)"`		//code
-	Name				string			`json:"name" gorm:"type:varchar(32)"`		//文件原名称
+	Name				string			`json:"name" gorm:"type:varchar(128)"`		//文件原名称
 	NewName				string			`json:"new_name" gorm:"type:varchar(128)"`	//新文件名称
 	Path 				string			`json:"path" gorm:"type:varchar(128)"`		//文件地址
 	FileSize 			int64			`json:"file_size" gorm:"type:int"`			//文件大小

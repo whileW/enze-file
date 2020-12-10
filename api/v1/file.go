@@ -26,7 +26,7 @@ func Upload(c *gin.Context)  {
 	//文件后缀
 	file_suffix := ""
 	if f := strings.Split(mfile.Filename,"."); len(f)>=2 {
-		file_suffix = strings.Split(mfile.Filename,".")[1]
+		file_suffix = f[len(f)-1]
 	}
 	file_allow_suffix := strings.Split(global.GVA_CONFIG.Setting.GetString("file_allow_suffix"),";")
 	if suffix_allow := utils.SliceStringContains(file_allow_suffix,file_suffix); !suffix_allow {
