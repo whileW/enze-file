@@ -17,7 +17,7 @@ type File struct{
 	//FileType 			int				`json:"file_type" gorm:"type:int"`			//文件类型
 	//保存方式 local-本地 qiniu-七牛
 	SaveType 			string			`json:"save_type" gorm:"type:varchar(128)"`
-	//状态 -2已删除 -1 等待删除 0临时文件 1正常
+	//状态 -2已删除 -1 等待删除 0临时文件 1正常  2低频存储  3归档存储
 	State 				int				`json:"state" gorm:"type:int"`
 }
 

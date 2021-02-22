@@ -19,7 +19,7 @@ func Upload(c *gin.Context)  {
 	}
 	filei,err := mfile.Open()
 	if err != nil {
-		global.GVA_LOG.Errorw("获取文件异常","err",err)
+		global.GVA_LOG.Errorw("文件打开异常","err",err)
 		resp.FailWithDetailed(c,resp.ParamterError,"没有获取到文件",nil)
 		return
 	}

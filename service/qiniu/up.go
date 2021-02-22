@@ -52,7 +52,7 @@ func (q *QnPuter) Put(at io.ReaderAt,name string,size int64) (string,string,erro
 	if err != nil {
 		return new_file_name,"",err
 	}
-	return new_file_name,get_file_complete_path(ret.Key),nil
+	return new_file_name,ret.Key,nil
 }
 func (q *QnPuter) PutFile(local_path string) (string,error) {
 	upToken,resumeUploader := get_uploader()
@@ -64,8 +64,8 @@ func (q *QnPuter) PutFile(local_path string) (string,error) {
 	if err != nil {
 		return "",err
 	}
-	return get_file_complete_path(ret.Key),nil
+	return ret.Key,nil
 }
 func (q *QnPuter) Get(c *gin.Context,file *model.File)  {
-	c.Redirect(http.StatusMovedPermanently, file.Path)
+	c.Redirect(http.StatusMovedPermanently, get_file_complete_path(file.Path))
 }
